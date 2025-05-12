@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:seminari_flutter/screens/auth/login_screen.dart';
 import 'package:seminari_flutter/screens/borrar_screen.dart';
+import 'package:seminari_flutter/screens/canviar_contrasenya_screen.dart';
 import 'package:seminari_flutter/screens/details_screen.dart';
+import 'package:seminari_flutter/screens/editar_perfil_screen.dart';
 import 'package:seminari_flutter/screens/editar_screen.dart';
 import 'package:seminari_flutter/screens/imprimir_screen.dart';
 import 'package:seminari_flutter/screens/home_screen.dart';
@@ -39,6 +41,14 @@ final GoRouter appRouter = GoRouter(
           path: 'profile',
           builder: (context, state) => const PerfilScreen(),
         ),
+        GoRoute(
+          path: 'editar-perfil',
+          builder: (context, state) => const EditarPerfilScreen(),
+),        
+        GoRoute(
+          path: 'canviar-contrasenya',
+          builder: (context, state) => const CanviarContrasenyaScreen(),
+),
       ],
     ),
   ],

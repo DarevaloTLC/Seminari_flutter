@@ -13,39 +13,36 @@ class LoginPage extends StatelessWidget {
   void signUserIn(BuildContext context) async {
     final authService = AuthService();
 
-    final email = emailController.text;
-    final password = passwordController.text;
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
       _showError(context, 'El email i la contrasenya no poden estar buits.');
       return;
     }
 
-    final result = await authService.login(email, password);
+    final result = await authService.login(context, email, password);
 
     if (result.containsKey('error')) {
       _showError(context, result['error']);
     } else {
-      context.go('/');
+      context.go('/'); // Redirige a la home o perfil
     }
   }
 
   void _showError(BuildContext context, String message) {
     showDialog(
       context: context,
-      builder:
-          (context) => AlertDialog(
-            title: const Text('Error'),
-            content: Text(message),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
+      builder: (_) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
           ),
+        ],
+      ),
     );
   }
 
